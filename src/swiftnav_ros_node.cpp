@@ -58,23 +58,23 @@
 */
 int main( int argc, char *argv[] )
 {
-	ros::init( argc, argv, "swiftnav_ros_node" );
+  ros::init( argc, argv, "swiftnav_ros_node" );
 
-	ros::NodeHandle nh;
-	ros::NodeHandle nh_priv( "~" );
+  ros::NodeHandle nh;
+  ros::NodeHandle nh_priv( "~" );
 
-	std::string port;
-	nh_priv.param( "port", port, (const std::string)"/dev/ttyUSB0" );
+  std::string port;
+  nh_priv.param( "port", port, (const std::string)"/dev/ttyUSB0" );
 
-	swiftnav_ros::PIKSI piksi( nh, nh_priv, port );
+  swiftnav_ros::PIKSI piksi( nh, nh_priv, port );
 
-	ROS_DEBUG( "Opening SBP device on %s", port.c_str( ) );
-	if( !piksi.PIKSIOpen( ) )
-		ROS_ERROR( "Failed to open SBP device on %s", port.c_str( ) );
-	else
-		ROS_INFO( "SBP device opened successfully on %s", port.c_str( ) );
+  ROS_DEBUG( "Opening SBP device on %s", port.c_str( ) );
+  if( !piksi.PIKSIOpen( ) )
+    ROS_ERROR( "Failed to open SBP device on %s", port.c_str( ) );
+  else
+    ROS_INFO( "SBP device opened successfully on %s", port.c_str( ) );
 
-	ros::spin( );
+  ros::spin( );
 
-	std::exit( EXIT_SUCCESS );
+  std::exit( EXIT_SUCCESS );
 }
